@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity() {
             }
             rcvLista.layoutManager = LinearLayoutManager(this@MainActivity)
             rcvLista.adapter = ProductoAdapter(listaProd,
-                {producto -> onItemSelected(producto)},
-                {position -> onDeleteItem(position)},
-                {position -> onUpdateItem(position)})
+                {producto -> seleccionar(producto)},
+                {position -> eliminar(position)},
+                {position -> actualizar(position)})
             limpiar()
         }
     }
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
 
-    fun onDeleteItem(position: Int) {
+    fun eliminar(position: Int) {
         val message = AlertDialog.Builder(this)
         message.setTitle("Eliminar")
         message.setMessage("Desea eliminar?")
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun onUpdateItem(position: Int){
+    fun actualizar(position: Int){
         try {
             with(binding) {
                 val id: Int = etID.text.toString().toInt()
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "Para editar llene todos los campos", Toast.LENGTH_SHORT).show()
         }
     }
-    fun onItemSelected(producto: Producto) {
+    fun seleccionar(producto: Producto) {
         with(binding) {
             etID.text = producto.id.toString().toEditable()
             etNombreProd.text = producto.nombre.toEditable()
