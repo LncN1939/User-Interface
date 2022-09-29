@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                 rcvLista.adapter?.notifyItemChanged(position)
             }
         }catch (ex: Exception){
-            Toast.makeText(this@MainActivity, "No se pueden editar datos vacios", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "Para editar llene todos los campos", Toast.LENGTH_SHORT).show()
         }
     }
     fun onItemSelected(producto: Producto) {
